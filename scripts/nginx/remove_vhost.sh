@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utilities.sh
+source ./utilities.sh
 
 function ask_domain () {
     

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utilities.sh
+source ./utilities.sh
 
 function create_vhost () {
     bash ./scripts/nginx/create_vhost.sh

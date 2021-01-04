@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utilities.sh
+source ./utilities.sh
 
 function change_cli_ver () {
     if sudo update-alternatives --set php /usr/bin/php$1 > /dev/null 2>&1; then

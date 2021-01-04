@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utilities.sh
+source ./utilities.sh
 
 DOMAIN="-----"
 DOMAIN_DIR="-----"
