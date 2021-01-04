@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#
+# Script to create virtual host for Nginx server
+#
+# @author   Saeed
+
+source utilities.sh
+
+
+server_name=$(hostname)
+
+function install_stack() {
+	bash ./scripts/stack/install.sh
+}
+
+function php_tools() {
+	bash ./scripts/php/php-menu.sh
+}
+
+function nginx_tools() {
+	bash ./scripts/nginx/nginx-menu.sh
+}
+
+function other_tools() {
+	_arrow "==================="
+    _arrow "Other Tools are Under Development"
+	_arrow "==================="
+
+	_continue
+}
+
+
+
+
+
+
+menu(){
+echo -ne "
+$(pGreen '===== WSL Tools by SAEED -- Main MENU =====')
+
+$(pGreen '1)') $(_underline 'Install Stacks')
+
+$(pGreen '2)') PHP Tools
+
+$(pGreen '3)') Nginx Tools
+
+$(pGreen '4)') Other Tools
+
+$(pGreen '0)') Exit
+-----------------------------------
+$(pBlue ':: Main Menu :: Choose an option:') "
+        read a
+        case $a in
+	        1) install_stack ; menu ;;
+	        2) php_tools ; menu ;;
+	        3) nginx_tools ; menu ;;
+	        4) other_tools ; menu ;;
+		0) _success "Have a Nice Day, BYE BYE";exit 0 ;;
+		*) _error "Wrong Choice !!";_continue; menu;;
+        esac
+}
+
+#### MAIN START ###
+
+menu
