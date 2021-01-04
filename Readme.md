@@ -28,7 +28,7 @@ Features of this Tools:
 
 2. Clone this Repo:
 
-    `sudo git clone https://github.com/saeeddirect1/wsl_tools.git`
+    `sudo git clone https://github.com/kodersaeed/wsl_tools.git`
 
 3. Chmod recursively to make all files executeable in Repo.
 
@@ -40,5 +40,5 @@ Features of this Tools:
 
 #### That's it. You can Always access the tools by this command:
 
-    `wsl_tools`
+`wsl_tools`
 
