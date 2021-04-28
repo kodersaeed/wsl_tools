@@ -203,7 +203,7 @@ function preparePHPVhostContent() {
     add_header X-XSS-Protection \"1; mode=block\";
     add_header X-Content-Type-Options \"nosniff\";
 
-    index index.html index.htm index.php;
+    index index.php index.html index.htm;
 
     charset utf-8;
 
@@ -222,6 +222,7 @@ function preparePHPVhostContent() {
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php${PHP_VER}-fpm.sock;
+	fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
         fastcgi_index index.php;
         include fastcgi_params;
     }
