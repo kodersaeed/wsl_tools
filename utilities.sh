@@ -335,6 +335,8 @@ apt_wait () {
 
 function _restart_nginx_php () {
 
+    _arrow "Restarting Nginx and PHP, Please wait"
+
     if nginx -t > /dev/null 2>&1; then
        _success "Nginx Conf is Valid & Successful"
        service nginx restart > /dev/null 2>&1

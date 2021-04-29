@@ -384,13 +384,20 @@ function verifyCurrentDirIsLaravelRoot()
         _error "$DOMAIN_DIR doesn't seem like Laravel Root & it also Doesn't end with /public, Should We Add /public at the end? (Y/N)"
         read a
         case $a in
-	        y|Y) _success "OK, Making it $DOMAIN_DIR/public"; DOMAIN_DIR="$DOMAIN_DIR/public";;
+	        y|Y) _success "OK, Making it $DOMAIN_DIR/public"; makeLaravelPublicWithPermissions;;
 	        n|N) _info "OK, We will add it in vHost conf as $DOMAIN_DIR"; DOMAIN_DIR="$DOMAIN_DIR";;
 	        *) ask_dir;;
         esac
     else
     
-    _info "$DOMAIN_DIR is a Laravel Root, making it $DOMAIN_DIR/public"
+    makeLaravelPublicWithPermissions
+
+    fi
+}
+
+function makeLaravelPublicWithPermissions()
+{
+    _info "$DOMAIN_DIR is considered a Laravel Root, making it $DOMAIN_DIR/public"
 
     _info "Fixing Permissions on $DOMAIN_DIR/storage and $DOMAIN_DIR/bootstrap/cache"
     
@@ -401,7 +408,6 @@ function verifyCurrentDirIsLaravelRoot()
 
     
     DOMAIN_DIR="$DOMAIN_DIR/public"
-    fi
 }
 
 function verifyCurrentDirIsVueRoot()

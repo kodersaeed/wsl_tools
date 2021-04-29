@@ -23,11 +23,13 @@ function nginx_tools() {
 }
 
 function other_tools() {
-	_arrow "==================="
-    _arrow "Other Tools are Under Development"
-	_arrow "==================="
+	# _arrow "==================="
+    # _arrow "Other Tools are Under Development"
+	# _arrow "==================="
 
-	_continue
+	# _continue
+
+	bash ./scripts/other/other_menu.sh
 }
 
 
