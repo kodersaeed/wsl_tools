@@ -222,7 +222,7 @@ function preparePHPVhostContent() {
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php${PHP_VER}-fpm.sock;
-	fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+	fastcgi_param SCRIPT_FILENAME \$realpath_root\$fastcgi_script_name;
         fastcgi_index index.php;
         include fastcgi_params;
     }
