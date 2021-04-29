@@ -223,6 +223,7 @@ function preparePHPVhostContent() {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php${PHP_VER}-fpm.sock;
         fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$realpath_root\$fastcgi_script_name;
         include fastcgi_params;
     }
 
@@ -388,7 +389,17 @@ function verifyCurrentDirIsLaravelRoot()
 	        *) ask_dir;;
         esac
     else
+    
     _info "$DOMAIN_DIR is a Laravel Root, making it $DOMAIN_DIR/public"
+
+    _info "Fixing Permissions on $DOMAIN_DIR/storage and $DOMAIN_DIR/bootstrap/cache"
+    
+    sudo chown -R $USER:www-data $DOMAIN_DIR/storage
+    sudo chown -R $USER:www-data $DOMAIN_DIR/bootstrap/cache
+    sudo chmod -R 775 $DOMAIN_DIR/storage
+    sudo chmod -R 775 $DOMAIN_DIR/bootstrap/cache
+
+    
     DOMAIN_DIR="$DOMAIN_DIR/public"
     fi
 }
