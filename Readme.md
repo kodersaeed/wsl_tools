@@ -36,7 +36,7 @@ Features of this Tools:
 
 4. Create an Alias for the tools:
 
-    `alias wsl_tools='cd ~/wsl_tools && sudo ./wsl_tools'` 
+    `alias wsl_tools='bash ~/wsl_tools/wsl_tools'` 
 
 #### That's it. You can Always access the tools by this command:
 

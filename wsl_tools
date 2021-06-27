@@ -5,21 +5,23 @@
 #
 # @author   Saeed
 
-source ./utilities.sh
+export parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+source $parent_path/utilities.sh
 
 
 server_name=$(hostname)
 
 function install_stack() {
-	bash ./scripts/stack/install.sh
+	bash $parent_path/scripts/stack/install.sh
 }
 
 function php_tools() {
-	bash ./scripts/php/php-menu.sh
+	bash $parent_path/scripts/php/php-menu.sh
 }
 
 function nginx_tools() {
-	bash ./scripts/nginx/nginx-menu.sh
+	bash $parent_path/scripts/nginx/nginx-menu.sh
 }
 
 function other_tools() {
@@ -29,7 +31,7 @@ function other_tools() {
 
 	# _continue
 
-	bash ./scripts/other/other_menu.sh
+	bash $parent_path/scripts/other/other_menu.sh
 }
 
 

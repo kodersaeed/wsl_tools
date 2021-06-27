@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./utilities.sh
+source $parent_path/utilities.sh
 
 UBUNTU_VERSION=$(lsb_release -rs)
 

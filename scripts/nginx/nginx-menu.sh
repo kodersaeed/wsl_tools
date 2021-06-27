@@ -1,21 +1,21 @@
 #!/bin/bash
 
-source ./utilities.sh
+source $parent_path/utilities.sh
 
 function create_vhost () {
-    bash ./scripts/nginx/create_vhost.sh
+    bash $parent_path/scripts/nginx/create_vhost.sh
 }
 
 function remove_vhost () {
-    bash ./scripts/nginx/remove_vhost.sh
+    bash $parent_path/scripts/nginx/remove_vhost.sh
 }
 
 function enable_vhost () {    
-    bash ./scripts/nginx/enable_vhost.sh
+    bash $parent_path/scripts/nginx/enable_vhost.sh
 }
 
 function disable_vhost () {    
-    bash ./scripts/nginx/disable_vhost.sh
+    bash $parent_path/scripts/nginx/disable_vhost.sh
 }
 
 

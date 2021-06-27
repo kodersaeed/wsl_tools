@@ -3,9 +3,6 @@
 
 ## Utility Functions and variables to be used by Scripts
 
-
-
-
 # Styles
 
 vhosts_av_dir="/etc/nginx/sites-available"
@@ -377,6 +374,16 @@ function is_Domain_Valid {
 		return 0; #domain VALID
 	fi
 }
+
+## Trapping CTRL+C
+exitfn () {
+    trap INT              # Restore signal handling for SIGINT
+    echo; echo "OH NOO!! DONT LEAVE US LIKE THAT!! 😁😁"    # Growl at user
+	# returning to dir saved in pushd by the alias
+    exit                     #   then exit script.
+}
+
+trap "exitfn" INT
 
 
 #check root
