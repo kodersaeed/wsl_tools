@@ -133,6 +133,7 @@ pTan "== Which PHP Version would you like for vHost $(pGreen $DOMAIN)? ==
 "
 
 echo -ne "
+$(pGreen '(1)') 8.1
 $(pGreen '(1)') 8.0
 $(pGreen '(2)') 7.4
 $(pGreen '(3)') 7.3
@@ -146,6 +147,7 @@ $(pGreen '(0)') << Go Back to Directory Step
 $(pBlue ':: Choose an option:  ') "
         read a
         case $a in
+	        1) PHP_VER="8.1";;
 	        1) PHP_VER="8.0";;
 	        2) PHP_VER="7.4";;
 	        3) PHP_VER="7.3";;

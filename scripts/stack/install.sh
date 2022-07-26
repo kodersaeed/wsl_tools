@@ -133,6 +133,7 @@ cat << FOE >> /home/$user_reloader/.bashrc
 
 #Auto Starting services
 sudo /etc/init.d/nginx start
+sudo /etc/init.d/php8.1-fpm start
 sudo /etc/init.d/php8.0-fpm start
 sudo /etc/init.d/php7.4-fpm start
 sudo /etc/init.d/php7.3-fpm start
@@ -148,6 +149,7 @@ FOE
 	_info "Removing Password Requirements from Services"
 
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/nginx' | sudo EDITOR='tee -a' visudo
+	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.1-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.0-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php7.4-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php7.3-fpm' | sudo EDITOR='tee -a' visudo
@@ -164,6 +166,17 @@ FOE
 else
 	_info "Blank or User $user_reloader Not Found, Moving On ..."
 fi
+
+_info "Installing PHP $(pGreen 8.1) with Extensions"
+
+apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes php8.1-cli php8.1-fpm php8.1-dev \
+php8.1-pgsql php8.1-sqlite3 php8.1-gd \
+php8.1-curl php8.1-memcached \
+php8.1-imap php8.1-mysql php8.1-mbstring \
+php8.1-xml php8.1-zip php8.1-bcmath php8.1-soap \
+php8.1-intl php8.1-readline php8.1-msgpack php8.1-igbinary php8.1-gmp
+
+
 
 _info "Installing PHP $(pGreen 8.0) with Extensions"
 
@@ -252,6 +265,12 @@ fi
 
 _info "Doing Misc. PHP CLI Configuration"
 
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.1/cli/php.ini
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.1/cli/php.ini
+sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/8.1/cli/php.ini
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/8.1/cli/php.ini
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/8.1/cli/php.ini
+
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.0/cli/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.0/cli/php.ini
 sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/8.0/cli/php.ini
@@ -300,6 +319,7 @@ _info "Configuring $(pGreen 'Imagick')"
 
 apt-get install -y --force-yes libmagickwand-dev
 
+echo "extension=imagick.so" > /etc/php/8.1/mods-available/imagick.ini
 echo "extension=imagick.so" > /etc/php/8.0/mods-available/imagick.ini
 echo "extension=imagick.so" > /etc/php/7.4/mods-available/imagick.ini
 echo "extension=imagick.so" > /etc/php/7.3/mods-available/imagick.ini
@@ -339,6 +359,12 @@ apt-get install -y --force-yes nginx
 
 
 _info "Tweaking Some PHP-FPM Settings"
+
+sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.1/fpm/php.ini
+sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.1/fpm/php.ini
+sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/8.1/fpm/php.ini
+sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/8.1/fpm/php.ini
+sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/8.1/fpm/php.ini
 
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.0/fpm/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.0/fpm/php.ini
@@ -512,6 +538,7 @@ then
 
 _info "Configuring $(pGreen 'PHPRedis')"
 
+echo "extension=redis.so" > /etc/php/8.1/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/8.0/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/7.4/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/7.3/mods-available/redis.ini
