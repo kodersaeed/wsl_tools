@@ -53,13 +53,13 @@ function change_cli_menu() {
 $(pTan '== Which PHP Version would you like to Change CLI to? ==')
 
 $(pGreen '(1)') PHP 8.1
-$(pGreen '(1)') PHP 8.0
-$(pGreen '(2)') PHP 7.4
-$(pGreen '(3)') PHP 7.3
-$(pGreen '(4)') PHP 7.2
-$(pGreen '(5)') PHP 7.1
-$(pGreen '(6)') PHP 7.0
-$(pGreen '(7)') PHP 5.6
+$(pGreen '(2)') PHP 8.0
+$(pGreen '(3)') PHP 7.4
+$(pGreen '(4)') PHP 7.3
+$(pGreen '(5)') PHP 7.2
+$(pGreen '(6)') PHP 7.1
+$(pGreen '(7)') PHP 7.0
+$(pGreen '(8)') PHP 5.6
 
 $(pGreen '(0)') << Go Back to PHP Tools
 -----------------------------------
@@ -90,13 +90,13 @@ pTan "== Which PHP Version would you like for vHost $(pGreen $1)? ==
 
 echo -ne "
 $(pGreen '(1)') PHP 8.1
-$(pGreen '(1)') PHP 8.0
-$(pGreen '(2)') PHP 7.4
-$(pGreen '(3)') PHP 7.3
-$(pGreen '(4)') PHP 7.2
-$(pGreen '(5)') PHP 7.1
-$(pGreen '(6)') PHP 7.0
-$(pGreen '(7)') PHP 5.6
+$(pGreen '(2)') PHP 8.0
+$(pGreen '(3)') PHP 7.4
+$(pGreen '(4)') PHP 7.3
+$(pGreen '(5)') PHP 7.2
+$(pGreen '(6)') PHP 7.1
+$(pGreen '(7)') PHP 7.0
+$(pGreen '(8)') PHP 5.6
 
 $(pGreen '(0)') << Go Back to vHosts List
 -----------------------------------
