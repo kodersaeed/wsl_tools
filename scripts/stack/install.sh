@@ -9,7 +9,7 @@ echo -ne "
 
 $(pGreen 'OK, This will install the following stuff:')
 
-$(pGreen '*)') PHP with Essential Extensions (from 8.0 to 5.6)
+$(pGreen '*)') PHP with Essential Extensions (from 8.1 to 5.6)
 
 $(pGreen '*)') Composer (PHP Package Manager)
 
