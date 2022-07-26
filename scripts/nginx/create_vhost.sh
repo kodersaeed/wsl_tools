@@ -5,7 +5,7 @@ source $parent_path/utilities.sh
 DOMAIN="-----"
 DOMAIN_DIR="-----"
 DOMAIN_TYPE="-----"
-PHP_VER="7.4"
+PHP_VER="8.1"
 
 
 function prepareVhostFilePaths()
