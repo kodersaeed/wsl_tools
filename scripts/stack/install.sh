@@ -341,9 +341,9 @@ chmod +t /var/lib/php/sessions
 
 
 
-_info "Making PHP $(pGreen '7.4') default in CLI"
+_info "Making PHP $(pGreen '8.1') default in CLI"
 
-sudo update-alternatives --set php /usr/bin/php7.4
+sudo update-alternatives --set php /usr/bin/php8.1
 
 
 
