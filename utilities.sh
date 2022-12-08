@@ -175,6 +175,10 @@ function _checking_all() {
 
 _check "php -v";
 
+_arrow "Checking PHP-FPM 8.2"
+
+_check "service php8.2-fpm status";
+
 _arrow "Checking PHP-FPM 8.1"
 
 _check "service php8.1-fpm status";
@@ -346,6 +350,7 @@ function _restart_nginx_php () {
 
 if [ ! -z "\$(ps aux | grep php-fpm | grep -v grep)" ]
 then
+	service php8.2-fpm start > /dev/null 2>&1	
 	service php8.1-fpm start > /dev/null 2>&1	
 	service php8.0-fpm start > /dev/null 2>&1	
     service php7.4-fpm start > /dev/null 2>&1
@@ -356,6 +361,7 @@ then
     service php5.6-fpm start > /dev/null 2>&1
     service php5-fpm start > /dev/null 2>&1
 
+    service php8.2-fpm restart > /dev/null 2>&1
     service php8.1-fpm restart > /dev/null 2>&1
     service php8.0-fpm restart > /dev/null 2>&1
     service php7.4-fpm restart > /dev/null 2>&1
