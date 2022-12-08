@@ -133,6 +133,7 @@ cat << FOE >> /home/$user_reloader/.bashrc
 
 #Auto Starting services
 sudo /etc/init.d/nginx start
+sudo /etc/init.d/php8.2-fpm start
 sudo /etc/init.d/php8.1-fpm start
 sudo /etc/init.d/php8.0-fpm start
 sudo /etc/init.d/php7.4-fpm start
@@ -149,6 +150,7 @@ FOE
 	_info "Removing Password Requirements from Services"
 
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/nginx' | sudo EDITOR='tee -a' visudo
+	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.2-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.1-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.0-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php7.4-fpm' | sudo EDITOR='tee -a' visudo
