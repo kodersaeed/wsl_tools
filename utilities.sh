@@ -154,16 +154,16 @@ function _ubuntu_only() {
 
     if _isOsDebian; then
 
-        if [[ "$UBUNTU_VERSION" != "20.04" && "$UBUNTU_VERSION" != "18.04" ]];
+        if [[ "$UBUNTU_VERSION" != "22.04" && "$UBUNTU_VERSION" != "20.04" && "$UBUNTU_VERSION" != "18.04" ]];
         then
 
-        _die "This Script is Only for Ubuntu 20.04 or 18.04, SORRY, BYEEEE"
+        _die "This Script is Only for Ubuntu 22.04 or 20.04 or 18.04, SORRY, BYEEEE"
         
 
         fi
 
     else
-         _die "This Script is Only for Debian Ubuntu 20.04 or 18.04, SORRY, BYEEEE"
+         _die "This Script is Only for Debian Ubuntu 22.04 or 20.04 or 18.04, SORRY, BYEEEE"
     fi
     
 
