@@ -13,7 +13,7 @@ $(pGreen '*)') PHP with Essential Extensions (from 8.2 to 5.6)
 
 $(pGreen '*)') Composer (PHP Package Manager)
 
-$(pGreen '*)') MariaDB 10.3 | MySQL 8.0 $(pBlue '(you will be asked)')
+$(pGreen '*)') MariaDB 10.6 | MySQL 8.0 $(pBlue '(you will be asked)')
 
 $(pGreen '*)') Nginx
 
@@ -617,7 +617,7 @@ exit 0;
 }
 
 ask_db_install(){
-echo -ne "$(pBlue "What you want to Install? Type $(pGreen '1') to MariaDB 10.3 or $(pRed '2') for MySQL 8.0):  ")"
+echo -ne "$(pBlue "What you want to Install? Type $(pGreen '1') to MariaDB 10.6 or $(pRed '2') for MySQL 8.0):  ")"
         read a
         case $a in
 	      1) install_mariadb ;;
@@ -633,7 +633,7 @@ UBUNTU_VERSION="$(lsb_release -rs)"
 	
 
 
-	_info "OK, Installing MariaDB 10.3"
+	_info "OK, Installing MariaDB 10.6"
 
 	sudo apt-get install software-properties-common
 	sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
@@ -646,12 +646,12 @@ UBUNTU_VERSION="$(lsb_release -rs)"
 	elif [[ "$UBUNTU_VERSION" == "20.04" ]];
 	then
 
-	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.3/ubuntu focal main'
+	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu focal main'
 
 	elif [[ "$UBUNTU_VERSION" == "18.04" ]];
 	then
 
-	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.3/ubuntu bionic main'
+	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu bionic main'
 
 	fi
 
@@ -659,9 +659,9 @@ UBUNTU_VERSION="$(lsb_release -rs)"
 
 	export DEBIAN_FRONTEND=noninteractive
 
-	debconf-set-selections <<< "mariadb-server-10.3 mysql-server/data-dir select ''"
-	debconf-set-selections <<< "mariadb-server-10.3 mysql-server/root_password password root"
-	debconf-set-selections <<< "mariadb-server-10.3 mysql-server/root_password_again password root"
+	debconf-set-selections <<< "mariadb-server-10.6 mysql-server/data-dir select ''"
+	debconf-set-selections <<< "mariadb-server-10.6 mysql-server/root_password password root"
+	debconf-set-selections <<< "mariadb-server-10.6 mysql-server/root_password_again password root"
 
 	apt_wait
 	sudo apt update

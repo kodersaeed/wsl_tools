@@ -6,7 +6,7 @@ Features of this Tools:
     * PHP - All Versions (8.2, 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6)
     * Composer
     * Nginx
-    * MariaDB 10.3 or MYSQL 8.0
+    * MariaDB 10.6 or MYSQL 8.0
     * Nodejs, NPM, Yarn
     * Redis Server
     * Memcached
