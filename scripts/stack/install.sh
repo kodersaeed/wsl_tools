@@ -176,7 +176,7 @@ php8.2-pgsql php8.2-sqlite3 php8.2-gd \
 php8.2-curl php8.2-memcached \
 php8.2-imap php8.2-mysql php8.2-mbstring \
 php8.2-xml php8.2-zip php8.2-bcmath php8.2-soap \
-php8.2-intl php8.2-readline php8.2-msgpack php8.2-igbinary php8.2-gmp
+php8.2-intl php8.2-readline php8.2-msgpack php8.2-igbinary php8.2-gmp php8.2-redis
 
 _info "Installing PHP $(pGreen 8.1) with Extensions"
 
@@ -185,7 +185,7 @@ php8.1-pgsql php8.1-sqlite3 php8.1-gd \
 php8.1-curl php8.1-memcached \
 php8.1-imap php8.1-mysql php8.1-mbstring \
 php8.1-xml php8.1-zip php8.1-bcmath php8.1-soap \
-php8.1-intl php8.1-readline php8.1-msgpack php8.1-igbinary php8.1-gmp
+php8.1-intl php8.1-readline php8.1-msgpack php8.1-igbinary php8.1-gmp php8.1-redis
 
 _info "Installing PHP $(pGreen 8.0) with Extensions"
 
@@ -194,7 +194,7 @@ php8.0-pgsql php8.0-sqlite3 php8.0-gd \
 php8.0-curl php8.0-memcached \
 php8.0-imap php8.0-mysql php8.0-mbstring \
 php8.0-xml php8.0-zip php8.0-bcmath php8.0-soap \
-php8.0-intl php8.0-readline php8.0-msgpack php8.0-igbinary php8.0-gmp
+php8.0-intl php8.0-readline php8.0-msgpack php8.0-igbinary php8.0-gmp php8.0-redis
 
 
 
@@ -205,7 +205,7 @@ php7.4-pgsql php7.4-sqlite3 php7.4-gd \
 php7.4-curl php7.4-memcached \
 php7.4-imap php7.4-mysql php7.4-mbstring \
 php7.4-xml php7.4-zip php7.4-bcmath php7.4-soap \
-php7.4-intl php7.4-readline php7.4-msgpack php7.4-igbinary php7.4-gmp
+php7.4-intl php7.4-readline php7.4-msgpack php7.4-igbinary php7.4-gmp php7.4-redis
 
 
 
@@ -216,7 +216,7 @@ php7.3-pgsql php7.3-sqlite3 php7.3-gd \
 php7.3-curl php7.3-memcached \
 php7.3-imap php7.3-mysql php7.3-mbstring \
 php7.3-xml php7.3-zip php7.3-bcmath php7.3-soap \
-php7.3-intl php7.3-readline php7.3-msgpack php7.3-igbinary php7.3-gmp
+php7.3-intl php7.3-readline php7.3-msgpack php7.3-igbinary php7.3-gmp php7.3-redis
 
 
 
@@ -227,7 +227,7 @@ php7.2-pgsql php7.2-sqlite3 php7.2-gd \
 php7.2-curl php7.2-memcached \
 php7.2-imap php7.2-mysql php7.2-mbstring \
 php7.2-xml php7.2-zip php7.2-bcmath php7.2-soap \
-php7.2-intl php7.2-readline php7.2-msgpack php7.2-igbinary php7.2-gmp
+php7.2-intl php7.2-readline php7.2-msgpack php7.2-igbinary php7.2-gmp php7.2-redis
 
 
 _info "Installing PHP $(pGreen 7.1) with Extensions"
@@ -237,7 +237,7 @@ php7.1-pgsql php7.1-sqlite3 php7.1-gd \
 php7.1-curl php7.1-memcached \
 php7.1-imap php7.1-mysql php7.1-mbstring \
 php7.1-xml php7.1-zip php7.1-bcmath php7.1-soap \
-php7.1-intl php7.1-readline php7.1-msgpack php7.1-igbinary php7.1-gmp
+php7.1-intl php7.1-readline php7.1-msgpack php7.1-igbinary php7.1-gmp php7.1-redis
 
 
 
@@ -248,7 +248,7 @@ php7.0-pgsql php7.0-sqlite3 php7.0-gd \
 php7.0-curl php7.0-memcached \
 php7.0-imap php7.0-mysql php7.0-mbstring \
 php7.0-xml php7.0-zip php7.0-bcmath php7.0-soap \
-php7.0-intl php7.0-readline php7.0-msgpack php7.0-igbinary php7.0-gmp
+php7.0-intl php7.0-readline php7.0-msgpack php7.0-igbinary php7.0-gmp php7.0-redis
 
 
 
@@ -259,7 +259,7 @@ php5.6-pgsql php5.6-sqlite3 php5.6-gd \
 php5.6-curl php5.6-memcached \
 php5.6-imap php5.6-mysql php5.6-mbstring \
 php5.6-xml php5.6-zip php5.6-bcmath php5.6-soap \
-php5.6-intl php5.6-readline php5.6-msgpack php5.6-igbinary php5.6-gmp
+php5.6-intl php5.6-readline php5.6-msgpack php5.6-igbinary php5.6-gmp php5.6-redis
 
 
 _info "Installing Composer Package Manager" 
@@ -569,8 +569,6 @@ echo "extension=redis.so" > /etc/php/7.2/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/7.1/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/7.0/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/5.6/mods-available/redis.ini
-
-yes '' | apt install php-redis
 
 fi
 
