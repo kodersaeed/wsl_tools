@@ -512,7 +512,7 @@ _info "Installing NodeJS, NPM, Yarn"
 
 apt_wait
 
-curl --silent --location https://deb.nodesource.com/setup_12.x | bash -
+curl --silent --location https://deb.nodesource.com/setup_18.x | bash -
 
 apt-get update
 
