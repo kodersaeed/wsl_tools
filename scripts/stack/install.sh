@@ -9,7 +9,7 @@ echo -ne "
 
 $(pGreen 'OK, This will install the following stuff:')
 
-$(pGreen '*)') PHP with Essential Extensions (from 8.2 to 5.6)
+$(pGreen '*)') PHP with Essential Extensions (from 8.3 to 5.6)
 
 $(pGreen '*)') Composer (PHP Package Manager)
 
@@ -133,6 +133,7 @@ cat << FOE >> /home/$user_reloader/.bashrc
 
 #Auto Starting services
 sudo /etc/init.d/nginx start
+sudo /etc/init.d/php8.3-fpm start
 sudo /etc/init.d/php8.2-fpm start
 sudo /etc/init.d/php8.1-fpm start
 sudo /etc/init.d/php8.0-fpm start
@@ -150,6 +151,7 @@ FOE
 	_info "Removing Password Requirements from Services"
 
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/nginx' | sudo EDITOR='tee -a' visudo
+	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.3-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.2-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.1-fpm' | sudo EDITOR='tee -a' visudo
 	echo '%sudo   ALL=NOPASSWD: /etc/init.d/php8.0-fpm' | sudo EDITOR='tee -a' visudo
@@ -168,6 +170,15 @@ FOE
 else
 	_info "Blank or User $user_reloader Not Found, Moving On ..."
 fi
+
+_info "Installing PHP $(pGreen 8.3) with Extensions"
+
+apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y --force-yes php8.3-cli php8.3-fpm php8.3-dev \
+php8.3-pgsql php8.3-sqlite3 php8.3-gd \
+php8.3-curl php8.3-memcached \
+php8.3-imap php8.3-mysql php8.3-mbstring \
+php8.3-xml php8.3-zip php8.3-bcmath php8.3-soap \
+php8.3-intl php8.3-readline php8.3-msgpack php8.3-igbinary php8.3-gmp php8.3-redis
 
 _info "Installing PHP $(pGreen 8.2) with Extensions"
 
@@ -274,6 +285,12 @@ fi
 
 _info "Doing Misc. PHP CLI Configuration"
 
+sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.3/cli/php.ini
+sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.3/cli/php.ini
+sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/8.3/cli/php.ini
+sudo sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/8.3/cli/php.ini
+sudo sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/8.3/cli/php.ini
+
 sudo sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.2/cli/php.ini
 sudo sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.2/cli/php.ini
 sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/8.2/cli/php.ini
@@ -334,6 +351,7 @@ _info "Configuring $(pGreen 'Imagick')"
 
 apt-get install -y --force-yes libmagickwand-dev
 
+echo "extension=imagick.so" > /etc/php/8.3/mods-available/imagick.ini
 echo "extension=imagick.so" > /etc/php/8.2/mods-available/imagick.ini
 echo "extension=imagick.so" > /etc/php/8.1/mods-available/imagick.ini
 echo "extension=imagick.so" > /etc/php/8.0/mods-available/imagick.ini
@@ -357,9 +375,9 @@ chmod +t /var/lib/php/sessions
 
 
 
-_info "Making PHP $(pGreen '8.2') default in CLI"
+_info "Making PHP $(pGreen '8.3') default in CLI"
 
-sudo update-alternatives --set php /usr/bin/php8.2
+sudo update-alternatives --set php /usr/bin/php8.3
 
 
 
@@ -375,6 +393,12 @@ apt-get install -y --force-yes nginx
 
 
 _info "Tweaking Some PHP-FPM Settings"
+
+sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.3/fpm/php.ini
+sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.3/fpm/php.ini
+sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/8.3/fpm/php.ini
+sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/8.3/fpm/php.ini
+sed -i "s/;date.timezone.*/date.timezone = UTC/" /etc/php/8.3/fpm/php.ini
 
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/8.2/fpm/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php/8.2/fpm/php.ini
@@ -560,6 +584,7 @@ then
 
 _info "Configuring $(pGreen 'PHPRedis')"
 
+echo "extension=redis.so" > /etc/php/8.3/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/8.2/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/8.1/mods-available/redis.ini
 echo "extension=redis.so" > /etc/php/8.0/mods-available/redis.ini
