@@ -5,7 +5,7 @@ source $parent_path/utilities.sh
 DOMAIN="-----"
 DOMAIN_DIR="-----"
 DOMAIN_TYPE="-----"
-PHP_VER="8.3"
+PHP_VER="8.4"
 
 
 function prepareVhostFilePaths()
@@ -133,32 +133,34 @@ pTan "== Which PHP Version would you like for vHost $(pGreen $DOMAIN)? ==
 "
 
 echo -ne "
-$(pGreen '(1)') 8.3
-$(pGreen '(2)') 8.2
-$(pGreen '(3)') 8.1
-$(pGreen '(4)') 8.0
-$(pGreen '(5)') 7.4
-$(pGreen '(6)') 7.3
-$(pGreen '(7)') 7.2
-$(pGreen '(8)') 7.1
-$(pGreen '(9)') 7.0
-$(pGreen '(10)') 5.6
+$(pGreen '(1)') 8.4
+$(pGreen '(2)') 8.3
+$(pGreen '(3)') 8.2
+$(pGreen '(4)') 8.1
+$(pGreen '(5)') 8.0
+$(pGreen '(6)') 7.4
+$(pGreen '(7)') 7.3
+$(pGreen '(8)') 7.2
+$(pGreen '(9)') 7.1
+$(pGreen '(10)') 7.0
+$(pGreen '(11)') 5.6
 
 $(pGreen '(0)') << Go Back to Directory Step
 -----------------------------------
 $(pBlue ':: Choose an option:  ') "
         read a
         case $a in
-	        1) PHP_VER="8.3";;
-            2) PHP_VER="8.2";;
-	        3) PHP_VER="8.1";;
-	        4) PHP_VER="8.0";;
-	        5) PHP_VER="7.4";;
-	        6) PHP_VER="7.3";;
-	        7) PHP_VER="7.2";;
-	        8) PHP_VER="7.1";;
-	        9) PHP_VER="7.0";;
-	        10) PHP_VER="5.6";;
+            1) PHP_VER="8.4";;
+	        2) PHP_VER="8.3";;
+            3) PHP_VER="8.2";;
+	        4) PHP_VER="8.1";;
+	        5) PHP_VER="8.0";;
+	        6) PHP_VER="7.4";;
+	        7) PHP_VER="7.3";;
+	        8) PHP_VER="7.2";;
+	        9) PHP_VER="7.1";;
+	        10) PHP_VER="7.0";;
+	        11) PHP_VER="5.6";;
 		    0) ask_dir ;;
 		    *) _error "Wrong Choice !!";_continue; ask_php;;
         esac
