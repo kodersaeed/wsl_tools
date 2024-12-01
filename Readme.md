@@ -1,6 +1,6 @@
 # WSL Tools for Easy Dev Environment
 
-**This script only works on Ubuntu 22.04, 20.04 and 18.04**
+**This script only works on Ubuntu 24.04, 22.04, 20.04 and 18.04**
 
 Features of this Tools:
 
