@@ -686,7 +686,12 @@ UBUNTU_VERSION="$(lsb_release -rs)"
 	sudo apt-get install software-properties-common
 	sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
    
-  if [[ "$UBUNTU_VERSION" == "22.04" ]];
+	if [[ "$UBUNTU_VERSION" == "24.04" ]];
+	then
+
+	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu noble main'
+  	
+	elif [[ "$UBUNTU_VERSION" == "22.04" ]];
 	then
 
 	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu jammy main'
