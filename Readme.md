@@ -30,11 +30,11 @@ Features of this Tools:
 
 2. Clone this Repo:
 
-    `sudo git clone https://github.com/kodersaeed/wsl_tools.git`
+    `git clone https://github.com/kodersaeed/wsl_tools.git`
 
 3. Chmod recursively to make all files executeable in Repo.
 
-    `sudo chmod -R +x ~/wsl_tools`
+    `chmod -R +x ~/wsl_tools`
 
 4. Create an Alias for the tools:
 
