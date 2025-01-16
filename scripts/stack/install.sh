@@ -13,7 +13,7 @@ $(pGreen '*)') PHP with Essential Extensions (from 8.4 to 5.6)
 
 $(pGreen '*)') Composer (PHP Package Manager)
 
-$(pGreen '*)') MariaDB 10.6 | MySQL 8.0 $(pBlue '(you will be asked)')
+$(pGreen '*)') MySQL 8.0
 
 $(pGreen '*)') Nginx
 
@@ -32,7 +32,7 @@ $(pBlue "Are you sure you want to continue? Type $(pGreen 'Y') to Continue or $(
 
 function continue_install() {
 
-if is_installed mysql-* || is_installed php* || is_installed nginx* || is_installed mariadb-* ; then
+if is_installed mysql-* || is_installed php* || is_installed nginx* ; then
 	echo -ne "
 	$(pRed '======= WARNING ========')
 
@@ -574,13 +574,13 @@ npm install -g yarn
 
 _info "Time to Install RDBMS"
 
-if is_installed mysql-* || is_installed mariadb* ; then
+if is_installed mysql-* ; then
 	
-	_error "Wo Wo Wo ! Seems like MySQL/MariaDB server is Already Installed, Won't Mess with it, Skipping Next ...."
+	_error "Wo Wo Wo ! Seems like MySQL server is Already Installed, Won't Mess with it, Skipping Next ...."
 
 else
 
-	ask_db_install
+	install_mysql
 
 	_info "usermod on MYSQL"
 
@@ -663,93 +663,6 @@ _success "========== ALL GOOD, EXITING TO MAIN MENU =========="
 exit 0;
 
 }
-
-ask_db_install(){
-echo -ne "$(pBlue "What you want to Install? Type $(pGreen '1') to MariaDB 10.6 or $(pRed '2') for MySQL 8.0):  ")"
-        read a
-        case $a in
-	      1) install_mariadb ;;
-	      2) install_mysql ;;
-			*) _error "Wrong Choice !!, Y for Continue, N for Abort"; ask_db_install;;
-        esac
-}
-
-function install_mariadb() {
-UBUNTU_VERSION="$(lsb_release -rs)"
-	
-	
-	
-
-
-	_info "OK, Installing MariaDB 10.6"
-
-	sudo apt-get install software-properties-common
-	sudo apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-   
-	if [[ "$UBUNTU_VERSION" == "24.04" ]];
-	then
-
-	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu noble main'
-  	
-	elif [[ "$UBUNTU_VERSION" == "22.04" ]];
-	then
-
-	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu jammy main'
-
-	elif [[ "$UBUNTU_VERSION" == "20.04" ]];
-	then
-
-	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu focal main'
-
-	elif [[ "$UBUNTU_VERSION" == "18.04" ]];
-	then
-
-	sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://mirrors.coreix.net/mariadb/repo/10.6/ubuntu bionic main'
-
-	fi
-
-
-
-	export DEBIAN_FRONTEND=noninteractive
-
-	debconf-set-selections <<< "mariadb-server-10.6 mysql-server/data-dir select ''"
-	debconf-set-selections <<< "mariadb-server-10.6 mysql-server/root_password password root"
-	debconf-set-selections <<< "mariadb-server-10.6 mysql-server/root_password_again password root"
-
-	apt_wait
-	sudo apt update
-	apt_wait
-	sudo apt install -y mariadb-server
-
-	_info "Configure Max Connections"
-
-	RAM=$(awk '/^MemTotal:/{printf "%3.0f", $2 / (1024 * 1024)}' /proc/meminfo)
-	MAX_CONNECTIONS=$(( 70 * $RAM ))
-	REAL_MAX_CONNECTIONS=$(( MAX_CONNECTIONS>70 ? MAX_CONNECTIONS : 100 ))
-	sed -i "s/^max_connections.*=.*/max_connections=${REAL_MAX_CONNECTIONS}/" /etc/mysql/my.cnf
-
-
-	_info "Configure Access Permissions For Root"
-
-	sed -i '/^bind-address/s/bind-address.*=.*/bind-address = */' /etc/mysql/my.cnf
-	mysql --user="root" --password="root" -e "GRANT ALL ON *.* TO root@'localhost' IDENTIFIED BY 'root';"
-	mysql --user="root" --password="root" -e "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY 'root';"
-	service mysql restart
-	mysql --user="root" --password="root" -e "FLUSH PRIVILEGES;"
-
-
-	# # Set Character Set
-
-	echo "" >> /etc/mysql/my.cnf
-	echo "[mysqld]" >> /etc/mysql/my.cnf
-	# # echo "character-set-server = utf8" >> /etc/mysql/my.cnf
-
-	# # Create The Initial Database If Specified
-
-	# mysql --user="root" --password="GrEAl7KC2cRCpEPrKoWC" -e "CREATE DATABASE forge;"
-
-}
-
 
 function install_mysql() {
 

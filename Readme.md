@@ -1,14 +1,19 @@
 # WSL Tools for Easy Dev Environment
 
-**This script only works on Ubuntu 24.04, 22.04, 20.04 and 18.04**
+**This script only works on the following Ubuntu versions:**
 
+ - Ubuntu 24 (24.04 and 24.10) 
+ - Ubuntu 22 (22.04 and 22.10) 
+ - Ubuntu 20 (20.04 and 20.10) 
+ - Ubuntu 18 (18.04 and 18.10)
+ 
 Features of this Tools:
 
 * **Install Stacks in 1 Step**
     * PHP - All Versions (8.4, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6)
     * Composer
     * Nginx
-    * MariaDB 10.6 or MYSQL 8.0
+    * MYSQL 8.0
     * Nodejs, NPM, Yarn
     * Redis Server
     * Memcached
