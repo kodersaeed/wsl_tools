@@ -431,6 +431,21 @@ function verifyCurrentDirIsVueRoot()
     fi
 }
 
+function addHostsEntry() {
+    # Check if running in WSL
+    if ! grep -q microsoft /proc/version; then
+        _arrow "Adding hosts entry for ${DOMAIN}..."
+        if ! grep -q "127.0.0.1 ${DOMAIN}" /etc/hosts; then
+            echo "127.0.0.1 ${DOMAIN}" | sudo tee -a /etc/hosts > /dev/null
+            _success "Added ${DOMAIN} to /etc/hosts file"
+        else
+            _info "${DOMAIN} already exists in /etc/hosts file"
+        fi
+    else
+        _success "You can add \""'127.0.0.1 '${DOMAIN}"\" in your %WINDIR%\System32\drivers\etc\hosts file to access the vHost"
+    fi
+}
+
 function printSuccessMessage()
 {
     _success "Virtual host for Nginx has been successfully created!"
@@ -445,8 +460,7 @@ function printSuccessMessage()
     echo ""
     echo "################################################################"
 
-    _success "You can add \""'127.0.0.1 '${DOMAIN}"\" in your %WINDIR%\System32\drivers\etc\hosts file to access the vHost"
-
+    addHostsEntry
 }
 
 
