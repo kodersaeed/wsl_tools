@@ -87,11 +87,14 @@ $(pBlue ':: Change CLI Version :: Choose an option (by number): ') "
 }
 
 function change_vhost_php_menu() {
-	
+    # Get current PHP version from vhost config
+    current_version=$(grep -o "php[0-9]\.[0-9]-fpm.sock" "$vhosts_av_dir/$1" | grep -o "[0-9]\.[0-9]")
+    
     echo -ne "
 "
-pTan "== Which PHP Version would you like for vHost $(pGreen $1)? ==
-
+    pTan "== Which PHP Version would you like for vHost $(pGreen $1)? =="
+    echo -ne "
+Current PHP Version: $(pGreen $current_version)
 "
 
 echo -ne "
