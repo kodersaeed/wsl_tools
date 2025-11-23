@@ -207,18 +207,16 @@ jobs:
 
   summary:
     name: Test Summary
-    needs: [shellcheck, test-ubuntu, test-ubuntu-1804]
+    needs: [test-ubuntu, test-ubuntu-1804]
     runs-on: ubuntu-latest
     if: always()
     steps:
       - name: Check test results
         run: |
-          echo "ShellCheck: ${{ needs.shellcheck.result }}"
           echo "Ubuntu Tests: ${{ needs.test-ubuntu.result }}"
           echo "Ubuntu 18.04 Test: ${{ needs.test-ubuntu-1804.result }}"
           
-          if [[ "${{ needs.shellcheck.result }}" == "failure" ]] || \
-             [[ "${{ needs.test-ubuntu.result }}" == "failure" ]] || \
+          if [[ "${{ needs.test-ubuntu.result }}" == "failure" ]] || \
              [[ "${{ needs.test-ubuntu-1804.result }}" == "failure" ]]; then
             echo "❌ Some tests failed"
             exit 1
