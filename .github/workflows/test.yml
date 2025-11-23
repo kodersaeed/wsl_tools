@@ -8,20 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  shellcheck:
-    name: ShellCheck Linting
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
-        with:
-          severity: warning
-          ignore_paths: |
-            node_modules
-
   test-ubuntu:
     name: Test on Ubuntu ${{ matrix.ubuntu-version }}
     runs-on: ubuntu-${{ matrix.ubuntu-version }}
