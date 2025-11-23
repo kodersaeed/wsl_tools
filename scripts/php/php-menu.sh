@@ -52,34 +52,36 @@ function change_cli_menu() {
     echo -ne "
 $(pTan '== Which PHP Version would you like to Change CLI to? ==')
 
-$(pGreen '(1)') PHP 8.4
-$(pGreen '(2)') PHP 8.3
-$(pGreen '(3)') PHP 8.2
-$(pGreen '(4)') PHP 8.1
-$(pGreen '(5)') PHP 8.0
-$(pGreen '(6)') PHP 7.4
-$(pGreen '(7)') PHP 7.3
-$(pGreen '(8)') PHP 7.2
-$(pGreen '(9)') PHP 7.1
-$(pGreen '(10)') PHP 7.0
-$(pGreen '(11)') PHP 5.6
+$(pGreen '(1)') PHP 8.5
+$(pGreen '(2)') PHP 8.4
+$(pGreen '(3)') PHP 8.3
+$(pGreen '(4)') PHP 8.2
+$(pGreen '(5)') PHP 8.1
+$(pGreen '(6)') PHP 8.0
+$(pGreen '(7)') PHP 7.4
+$(pGreen '(8)') PHP 7.3
+$(pGreen '(9)') PHP 7.2
+$(pGreen '(10)') PHP 7.1
+$(pGreen '(11)') PHP 7.0
+$(pGreen '(12)') PHP 5.6
 
 $(pGreen '(0)') << Go Back to PHP Tools
 -----------------------------------
 $(pBlue ':: Change CLI Version :: Choose an option (by number): ') "
         read a
         case $a in
-            1) change_cli_ver "8.4" ; menu ;;
-	        2) change_cli_ver "8.3" ; menu ;;
-            3) change_cli_ver "8.2" ; menu ;;
-	        4) change_cli_ver "8.1" ; menu ;;
-	        5) change_cli_ver "8.0" ; menu ;;
-	        6) change_cli_ver "7.4" ; menu ;;
-	        7) change_cli_ver "7.3" ; menu ;;
-	        8) change_cli_ver "7.2" ; menu ;;
-	        9) change_cli_ver "7.1" ; menu ;;
-	        10) change_cli_ver "7.0" ; menu ;;
-	        11) change_cli_ver "5.6" ; menu ;;
+            1) change_cli_ver "8.5" ; menu ;;
+            2) change_cli_ver "8.4" ; menu ;;
+	        3) change_cli_ver "8.3" ; menu ;;
+            4) change_cli_ver "8.2" ; menu ;;
+	        5) change_cli_ver "8.1" ; menu ;;
+	        6) change_cli_ver "8.0" ; menu ;;
+	        7) change_cli_ver "7.4" ; menu ;;
+	        8) change_cli_ver "7.3" ; menu ;;
+	        9) change_cli_ver "7.2" ; menu ;;
+	        10) change_cli_ver "7.1" ; menu ;;
+	        11) change_cli_ver "7.0" ; menu ;;
+	        12) change_cli_ver "5.6" ; menu ;;
 		    0) menu ;;
 		    *) _error "Wrong Choice !!";_continue; change_cli_menu;;
         esac
@@ -98,34 +100,36 @@ Current PHP Version: $(pGreen $current_version)
 "
 
 echo -ne "
-$(pGreen '(1)') PHP 8.4
-$(pGreen '(2)') PHP 8.3
-$(pGreen '(3)') PHP 8.2
-$(pGreen '(4)') PHP 8.1
-$(pGreen '(5)') PHP 8.0
-$(pGreen '(6)') PHP 7.4
-$(pGreen '(7)') PHP 7.3
-$(pGreen '(8)') PHP 7.2
-$(pGreen '(9)') PHP 7.1
-$(pGreen '(10)') PHP 7.0
-$(pGreen '(11)') PHP 5.6
+$(pGreen '(1)') PHP 8.5
+$(pGreen '(2)') PHP 8.4
+$(pGreen '(3)') PHP 8.3
+$(pGreen '(4)') PHP 8.2
+$(pGreen '(5)') PHP 8.1
+$(pGreen '(6)') PHP 8.0
+$(pGreen '(7)') PHP 7.4
+$(pGreen '(8)') PHP 7.3
+$(pGreen '(9)') PHP 7.2
+$(pGreen '(10)') PHP 7.1
+$(pGreen '(11)') PHP 7.0
+$(pGreen '(12)') PHP 5.6
 
 $(pGreen '(0)') << Go Back to vHosts List
 -----------------------------------
 $(pBlue ':: Choose an option (by number):  ') "
         read a
         case $a in
-            1) change_vhost_ver $1 "8.4" ; menu;;
-	        2) change_vhost_ver $1 "8.3" ; menu;;
-            3) change_vhost_ver $1 "8.2" ; menu;;
-	        4) change_vhost_ver $1 "8.1" ; menu;;
-	        5) change_vhost_ver $1 "8.0" ; menu;;
-	        6) change_vhost_ver $1 "7.4" ; menu;;
-	        7) change_vhost_ver $1 "7.3" ; menu;;
-	        8) change_vhost_ver $1 "7.2" ; menu;;
-	        9) change_vhost_ver $1 "7.1" ; menu;;
-	        10) change_vhost_ver $1 "7.0" ; menu;;
-	        11) change_vhost_ver $1 "5.6" ; menu;;
+            1) change_vhost_ver $1 "8.5" ; menu;;
+            2) change_vhost_ver $1 "8.4" ; menu;;
+	        3) change_vhost_ver $1 "8.3" ; menu;;
+            4) change_vhost_ver $1 "8.2" ; menu;;
+	        5) change_vhost_ver $1 "8.1" ; menu;;
+	        6) change_vhost_ver $1 "8.0" ; menu;;
+	        7) change_vhost_ver $1 "7.4" ; menu;;
+	        8) change_vhost_ver $1 "7.3" ; menu;;
+	        9) change_vhost_ver $1 "7.2" ; menu;;
+	        10) change_vhost_ver $1 "7.1" ; menu;;
+	        11) change_vhost_ver $1 "7.0" ; menu;;
+	        12) change_vhost_ver $1 "5.6" ; menu;;
 		    0) change_vhost_menu ;;
 		    *) _error "Wrong Choice !!";_continue; change_vhost_php_menu $1;;
         esac
@@ -199,6 +203,10 @@ function change_values () {
         
 rm -f /etc/nginx/conf.d/limits.conf
 
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = $size/" /etc/php/8.5/fpm/php.ini
+sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = $size/" /etc/php/8.5/cli/php.ini
+sudo sed -i "s/post_max_size = .*/post_max_size = $size/" /etc/php/8.5/fpm/php.ini
+sudo sed -i "s/post_max_size = .*/post_max_size = $size/" /etc/php/8.5/cli/php.ini
 sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = $size/" /etc/php/8.4/fpm/php.ini
 sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = $size/" /etc/php/8.4/cli/php.ini
 sudo sed -i "s/post_max_size = .*/post_max_size = $size/" /etc/php/8.4/fpm/php.ini

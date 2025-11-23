@@ -17,7 +17,7 @@ So this tool gives you something like a little **Ploi.io** or **Laravel Forge** 
 ## Features of this Tools:
 
 * **Install Stacks in 1 Step**
-    * PHP - All Versions (8.4, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6)
+    * PHP - All Versions (8.5, 8.4, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3, 7.2, 7.1, 7.0, 5.6)
     * Composer
     * Nginx
     * MYSQL 8.0
