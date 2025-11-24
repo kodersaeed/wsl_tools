@@ -48,9 +48,13 @@ _continue
 
 
 function change_cli_menu() {
+
+    current_version=$(php -v | grep "PHP" | awk '{print $2}')
 	
     echo -ne "
 $(pTan '== Which PHP Version would you like to Change CLI to? ==')
+
+$(pGreen 'Current PHP Version:') $(pGreen $current_version)
 
 $(pGreen '(1)') PHP 8.5
 $(pGreen '(2)') PHP 8.4
@@ -266,8 +270,24 @@ _restart_nginx_php
 
 }
 
-
-
+function check_php_versions_status() {
+    _arrow "Checking PHP Versions Status"
+    echo ""
+    
+    # Array of PHP versions to check
+    php_versions=("8.5" "8.4" "8.3" "8.2" "8.1" "8.0" "7.4" "7.3" "7.2" "7.1" "7.0" "5.6")
+    
+    for version in "${php_versions[@]}"; do
+        if service php${version}-fpm status > /dev/null 2>&1; then
+            _success "PHP ${version} Active And Running"
+        else
+            _error "PHP ${version} Not Running"
+        fi
+    done
+    
+    echo ""
+ 
+}
 
 menu(){
 echo -ne "
@@ -277,6 +297,7 @@ $(_underline '### PHP Tools  ###')
 $(pGreen '(1)') Change PHP CLI Version
 $(pGreen '(2)') Change PHP Version for vHost
 $(pGreen '(3)') Update MAX POST/UPLOAD Size in PHP.ini
+$(pGreen '(4)') Check All PHP Versions Status
 
 $(pGreen '(0)') << Go Back to MainMenu
 -----------------------------------
@@ -286,6 +307,7 @@ $(pBlue ':: PHPTools :: Choose an option:') "
 	        1) change_cli_menu ; menu ;;
 	        2) change_vhost_menu ; menu ;;
 	        3) change_values_menu ; menu ;;
+	        4) check_php_versions_status ; menu ;;
 		    0) exit 0 ;;
 		    *) _error "Wrong Choice !!"; menu;;
         esac
