@@ -28,6 +28,7 @@ So this tool gives you something like a little **Ploi.io** or **Laravel Forge** 
     * Change PHP CLI Version
     * Change PHP Version for vHost
     * Update MAX POST/UPLOAD Size in PHP.ini
+    * Check All PHP Versions Status
 * **Nginx Tools**
     * Create vHost & Enable it (Laravel/PHP, Vue/Static, NuxtJS SSR)
     * Remove vHost (Delete from sites-available & sites-enabled)
@@ -55,4 +56,3 @@ So this tool gives you something like a little **Ploi.io** or **Laravel Forge** 
 #### That's it. You can Always access the tools by this command:
 
 `wsl_tools`
-
