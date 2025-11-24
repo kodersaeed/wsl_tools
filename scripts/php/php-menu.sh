@@ -49,7 +49,7 @@ _continue
 
 function change_cli_menu() {
 
-    current_version=$(php -v | grep "PHP" | awk '{print $2}')
+    current_version=$(php -v | grep -o "PHP [0-9]\.[0-9]" | awk '{print $2}')
 	
     echo -ne "
 $(pTan '== Which PHP Version would you like to Change CLI to? ==')
